@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo apt-get install --force-yes -y build-essential linux-headers-`uname -r` dkms  nvidia-kernel-`uname -r` nvidia-glx nvidia-settings nvidia-xconfig
+zenity --info --text 'Successfully Installed' --title 'Complete'
+exit

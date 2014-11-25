@@ -1,0 +1,5 @@
+[module]
+name = Workspaces
+ico = workspaces.png
+desc = Set the number of desktops
+command = xfwm4-workspace-settings

@@ -1,0 +1,5 @@
+[module]
+name = Remove Home Icon
+ico = home_rem.png
+desc = Remove Home icon from the Desktop
+command = rm -rf ~/Desktop/home.desktop

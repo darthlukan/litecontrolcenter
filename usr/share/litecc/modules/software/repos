@@ -1,0 +1,5 @@
+[module]
+name = Edit Software Sources
+ico = repos.png
+desc = Select a closer server and manage PPA's
+command = software-properties-gtk

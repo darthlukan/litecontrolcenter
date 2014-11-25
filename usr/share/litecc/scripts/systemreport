@@ -1,0 +1,36 @@
+#!/bin/bash
+#--------------------------------------------
+# Description: Linux Lite System Report Tool
+# Author: Jerry Bezencon 2014
+# Website: https://www.linuxliteos.com
+#--------------------------------------------
+
+# Main window dialogue.
+ INSTALLER_TITLE="Linux Lite System Report Tool
+-----------------------------------------------------------------------------------------------------
+This will create a detailed report of your system.
+It will help our Support team more easily troubleshoot any problems you may
+be experiencing.
+
+-----------------------------------------------------------------------------------------------------
+Click on Yes to continue or No to cancel."
+
+# Call the zenity window icon location.
+ INSTALL_ICON="/usr/share/litecc/frontend/icons/zenity-llcc.png"
+ APPNAME="System Report Tool"
+ SCRIPT="sh /usr/share/litecc/scripts/info.sh"
+        
+        zenity --question --title="$APPNAME" --window-icon="${INSTALL_ICON}" --text="${INSTALLER_TITLE}"
+
+                if [ "$?" -eq "0" ]; then
+			lxterminal -t " Create System Report" -e /usr/scripts/info
+
+                else
+
+                                        exit 0
+                fi
+
+
+
+
+exit 0

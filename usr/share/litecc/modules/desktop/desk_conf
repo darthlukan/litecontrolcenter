@@ -1,0 +1,5 @@
+[module]
+name = Configure Desktop
+ico = desktopconf.png
+desc = Change Wallpaper and Menu options
+command = xfdesktop-settings

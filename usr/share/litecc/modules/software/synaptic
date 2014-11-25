@@ -1,0 +1,5 @@
+[module]
+name = Syanptic Package Manager
+ico = synaptic.png
+desc = Install & Remove software
+command = gksudo synaptic

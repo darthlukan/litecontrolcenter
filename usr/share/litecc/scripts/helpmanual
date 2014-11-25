@@ -1,0 +1,3 @@
+#! /bin/bash
+
+xdg-open "file:///usr/share/doc/xfce4-utils/html/C/software.html"

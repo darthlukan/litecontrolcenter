@@ -1,0 +1,5 @@
+[module]
+name = Accessibility
+ico = accessibility.png
+desc = Improve mouse and keyboard accessibility
+command = xfce4-accessibility-settings

@@ -1,0 +1,5 @@
+[module]
+name = Restart Share Services
+ico = network.png
+desc = To apply new settings, restart share services
+command = x-terminal-emulator -e /usr/scripts/restart-samba

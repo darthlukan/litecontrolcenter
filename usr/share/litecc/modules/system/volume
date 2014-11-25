@@ -1,0 +1,5 @@
+[module]
+name = Volume Control
+ico = sound.png
+desc = Configure and control your sound
+command = pavucontrol

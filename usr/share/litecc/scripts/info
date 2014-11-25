@@ -1,0 +1,196 @@
+#!/bin/bash
+# Linux Lite System Information Report Tool for Ubuntu based systems
+# Dependencies - lshw, dmidecode, hdparm
+# Developer - Jerry Bezencon
+# Creation Date - Monday 29th April, 2013
+# Website - http://www.linuxliteos.com
+# Credits - Various people at the Linux Distro Community including but not limited to:
+# Armageddon, pdq, pingcasts, preecher, setkeh, Shaggytwodope, Stripe, zoose
+
+bold=`tput bold`
+normal=`tput sgr0`
+DATE=$(date +"%A-%d-%B-%Y-%T")
+rm -rf $HOME/systeminfo*
+
+# Script start
+
+echo "${bold}**************************************"
+echo "Linux Lite - System Information Report"
+echo "**************************************${normal}"
+echo ""
+echo "This will gather system information which will help"
+echo "our Support team to help you more effectively."
+echo "${bold}NO${normal} personal information is sent."
+echo "Please ignore any errors that may pop up."
+echo "This Report may take a while to generate."
+echo ""
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Report Date: "$(date +"%r, %d - %m - %Y") >> $HOME/systeminfo-"${DATE}".txt
+now=$(date +"%r, %d - %m - %Y") >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "Please enter your password to continue..."
+echo ""
+
+# Begin reporting information
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Bios & Motherboard Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " BIOS:" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo dmidecode -t 0 >> $HOME/systeminfo-"${DATE}".txt
+
+echo " MOTHERBOARD:" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo dmidecode -t 2 >> $HOME/systeminfo-"${DATE}".txt
+sudo dmidecode -t 3 >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "CPU Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+grep "model name" /proc/cpuinfo >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+lscpu >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Memory Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " RAM SPEED:" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo dmidecode --type 17 | grep -i speed >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " PHYSICAL RAM DETAILS (one section per ram slot):" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo dmidecode --type 17 >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Graphics Chip Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo lshw -C display >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Sound Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+aplay --list-devices >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Hard Drive/SSD Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+df -T >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " MOUNT:" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+mount >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " FDISK:" >> $HOME/systeminfo-"${DATE}".txt
+sudo fdisk -l /dev/sda >> $HOME/systeminfo-"${DATE}".txt
+sudo fdisk -l /dev/sdb >> $HOME/systeminfo-"${DATE}".txt
+sudo fdisk -l /dev/sdc >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo " HDPARM:" >> $HOME/systeminfo-"${DATE}".txt
+sudo hdparm -i /dev/sda >> $HOME/systeminfo-"${DATE}".txt
+sudo hdparm -i /dev/sdb >> $HOME/systeminfo-"${DATE}".txt
+sudo hdparm -i /dev/sdc >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Groups Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+groups $USER >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "PCI Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+lspci >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "USB Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+lsusb >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Kernel Modules Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+lsmod >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Kernel & Operating System Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+uname -a >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+lsb_release -d >> $HOME/systeminfo-"${DATE}".txt
+lsb_release -i >> $HOME/systeminfo-"${DATE}".txt
+lsb_release -c >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+echo "Based on:" >> $HOME/systeminfo-"${DATE}".txt
+cat /etc/issue.net >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Network Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+ifconfig >> $HOME/systeminfo-"${DATE}".txt
+more /etc/network/interfaces >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+sudo lshw -C network >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Environment Variables Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+printenv >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "Software Installed Information" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+dpkg --list >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "End of Report" >> $HOME/systeminfo-"${DATE}".txt
+echo "===========================================================" >> $HOME/systeminfo-"${DATE}".txt
+echo "" >> $HOME/systeminfo-"${DATE}".txt
+
+# End of reporting information
+
+# Prompt user to open report
+
+echo ""
+echo "The system report is located in your home folder."
+
+read -n1 -p "Would you like to open the report now? (y/n) "
+echo
+[[ $REPLY = [yY] ]] && leafpad $HOME/systeminfo-"${DATE}".txt || exit 1;

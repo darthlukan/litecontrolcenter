@@ -1,0 +1,5 @@
+[module]
+name = Removable Drives
+ico = removable.png
+desc = Management of removable drives and media
+command = thunar-volman-settings

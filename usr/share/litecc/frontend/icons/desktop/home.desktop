@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Home
+Comment=
+Exec=homelaunch
+Icon=user-home
+Terminal=false
+StartupNotify=false
+GenericName=

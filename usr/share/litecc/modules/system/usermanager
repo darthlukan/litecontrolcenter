@@ -1,0 +1,5 @@
+[module]
+name = User Manager
+ico = usermanager.png
+desc = Configure, add and remove users
+command = lite-usermanager

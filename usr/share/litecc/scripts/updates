@@ -1,0 +1,20 @@
+#!/bin/bash
+
+bold=`tput bold`
+normal=`tput sgr0`
+
+echo "${bold}**********************"
+echo "Linux Lite 2.0 Updates"
+echo "**********************${normal}"
+echo ""
+echo "Linux Lite will now search for updates for your computer."
+echo "Once installed, your computer will be up to date."
+echo "Simply follow the onscreen instructions."
+echo ""
+echo "Please enter your password to continue..."
+sudo apt-get update && sudo apt-get upgrade
+
+echo ""
+echo "Updates complete."
+echo "This window will now close."
+sleep 5

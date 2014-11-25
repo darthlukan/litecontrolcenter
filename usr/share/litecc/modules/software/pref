@@ -1,0 +1,5 @@
+[module]
+name = Preferred Applications
+ico = preferences.png
+desc = Set default applications
+command = exo-preferred-applications

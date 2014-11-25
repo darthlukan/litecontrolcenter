@@ -1,0 +1,5 @@
+[module]
+name = Window Manager
+ico = windowmanager.png
+desc = Configure window behaviour and shortcuts
+command = xfwm4-settings

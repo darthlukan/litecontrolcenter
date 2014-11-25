@@ -1,0 +1,5 @@
+[module]
+name = Remove Additional Software
+ico = remadd.png
+desc = Remove popular software
+command = gksudo /usr/scripts/lite-remover

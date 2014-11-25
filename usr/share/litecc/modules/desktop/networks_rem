@@ -1,0 +1,5 @@
+[module]
+name = Remove Networks Icon
+ico = network_rem.png
+desc = Remove Networks icon from the Desktop
+command = rm -rf ~/Desktop/networks.desktop

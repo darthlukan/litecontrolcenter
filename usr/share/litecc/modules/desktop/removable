@@ -1,0 +1,5 @@
+[module]
+name = File Manager
+ico = filemanager.png
+desc = Configure the file manager behaviour
+command = thunar-settings

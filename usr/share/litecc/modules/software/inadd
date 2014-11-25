@@ -1,0 +1,5 @@
+[module]
+name = Install Additional Software
+ico = inadd.png
+desc = Install popular software
+command = gksudo /usr/scripts/lite-software

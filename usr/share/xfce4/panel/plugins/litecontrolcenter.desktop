@@ -1,0 +1,18 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=Lite Control Center
+Name[cs]=Lite Control Center
+Name[da]=Lite Control Center
+Name[en_GB]=Lite Control Center
+Name[ja]=Lite Control Center
+Name[pl]=Lite Control Center
+Name[sk]=Lite Control Center
+Comment=Control and manage Linux Lite
+Comment[en_GB]=Control and manage Linux Lite
+Icon=lite-center
+X-XFCE-Module=litecontrolcenter
+X-XFCE-Internal=false
+
+[Desktop Entry]
+Name=litecontrolcenter.desktop

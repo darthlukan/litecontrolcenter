@@ -1,0 +1,5 @@
+[module]
+name = Edit Network Shares
+ico = network.png
+desc = Edit, add and remove network shares
+command = gksudo leafpad /etc/samba/smb.conf

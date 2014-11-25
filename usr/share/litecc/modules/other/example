@@ -1,0 +1,5 @@
+[module]
+name = Do The Funky Chicken
+ico = gdebi.png
+desc = Love Waffles
+command = leafpad

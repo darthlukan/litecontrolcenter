@@ -1,0 +1,5 @@
+[module]
+name = Monitor Settings
+ico = computer_add.png
+desc = Configure your displays
+command = xfce4-display-settings

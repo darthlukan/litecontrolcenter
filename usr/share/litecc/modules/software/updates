@@ -1,0 +1,5 @@
+[module]
+name = Install Updates
+ico = installupdates.png
+desc = Update your computer
+command = x-terminal-emulator -e /usr/scripts/updates

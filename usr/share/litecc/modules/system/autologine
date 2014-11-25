@@ -1,0 +1,5 @@
+[module]
+name = Enable Auto Login
+ico = autologine.png
+desc = Clicking on this will enable autologin
+command = /usr/share/litecc/scripts/autologine

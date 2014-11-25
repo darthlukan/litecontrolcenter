@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Updates Script
+
+# Ask for sudo
+
+zenity --question --title="Install Updates" --text="Would you like to install updates for your computer?"
+if [ "$?" -eq "0" ]; then
+gksudo -k -m "To install these updates your password is required. Enter your password, or press Cancel." /bin/echo "Press enter to continue."
+sudo -v
+
+(
+sudo apt-get --quiet update && sudo apt-get --yes --quiet upgrade
+) | zenity --progress --pulsate --auto-close --auto-kill --title="Install Updates" --text="Fetching and installing updates..."  --percentage=0 --width 350 --height 25
+zenity --info --title="Finished" --window-icon="${INSTALL_ICON}" --text="Updates Complete."
+
+fi

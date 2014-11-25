@@ -1,0 +1,52 @@
+#!/bin/bash
+#-------------------------------------------
+# Description: Linux Lite Installer Dialogue
+# Author: Jerry Bezencon 2014
+# Website: https://www.linuxliteos.com
+#-------------------------------------------
+
+# Main window dialogue.
+ INSTALLER_TITLE="Dropbox Installer
+-----------------------------------------------------------------------------------------------------
+This will install Dropbox.
+
+When you click on Yes, this window will close and the install will begin.
+The install time will vary based on your internet connection and computer.
+Support is available from - https://www.dropbox.com/‎
+
+Once installed, Dropbox is located in Menu, Internet.
+-----------------------------------------------------------------------------------------------------
+Click on Yes to continue or No to cancel the installation."
+
+# Call the zenity window icon location.
+ INSTALL_ICON="/usr/share/litecc/frontend/icons/zenity-llcc.png"
+ APPNAME="Dropbox"
+        
+        zenity --question --title="$APPNAME Installer" --window-icon="${INSTALL_ICON}" --text="${INSTALLER_TITLE}"
+
+                if [ "$?" -eq "0" ]; then
+                        gksudo -g --message 'To install this software your password is required. Enter your password, or press Cancel.' "sudo apt-get install -f nautilus-dropbox --force-yes -y" | zenity --progress --title="Installing $APPNAME" --window-icon="${INSTALL_ICON}" --text="Please wait whilst $APPNAME downloads and installs..." --pulsate --width=400 --auto-close --auto-kill
+
+
+                                if [ "${PIPESTATUS[0]}" -ne "0" ]; then
+                        
+                                        zenity --error \
+                                        --title="Error" --text="$APPNAME could not be installed."
+                                        exit 0
+                                fi
+
+                else
+
+                                        exit 0
+                fi
+
+
+PROCEED=$(zenity --question --title="$APPNAME Installer" --window-icon=/usr/share/litecc/frontend/icons/zenity-llcc.png --text="The installation has finished.\n\nWould you like to launch $APPNAME now?"; echo $?)
+if [ ${PROCEED} -eq 1 ]; then
+	zenity --info --title="Finished" --window-icon="${INSTALL_ICON}" --text="Install Complete.\n\n$APPNAME is located in Menu, Internet"
+	exit;
+else
+	dropbox start -i
+fi
+
+exit 0

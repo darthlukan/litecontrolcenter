@@ -1,0 +1,5 @@
+[module]
+name = Printers
+ico = printer.png
+desc = Configure your printer
+command = system-config-printer

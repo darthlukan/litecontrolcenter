@@ -1,0 +1,5 @@
+[module]
+name = Screen Notifications
+ico = notifications.png
+desc = Customize notifications on your screen
+command = xfce4-notifyd-config

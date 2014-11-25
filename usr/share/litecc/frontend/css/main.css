@@ -1,0 +1,471 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background-color:transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: #333; 
+    border-radius: 8px;
+}
+header, footer, article, section, hgroup, nav, figure, aside {display: block;}
+figure {
+	margin:0;
+	padding:0;
+}
+html {height:100%; overflow-x :hidden; -webkit-user-select: none; cursor:default; -webkit-font-smoothing: antialiased;}
+body {
+	background-image: url("../images/noise.png");
+	margin:0;
+	font:13px/14px "Ubuntu", sans-serif;  /*App default font size*/
+	color:#8a8a8a;
+	
+	height:100%;
+}
+
+.dialog {
+	position: absolute;
+	top: 0;
+	
+	
+	
+	right: 25%;
+	left: 25%;
+	width: 400px;
+	height: 250px;
+   	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 0 0 10px 10px ;
+	z-index: 9999;
+	
+} 
+.dim {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 9998;
+	
+} 
+img {border-style:none;}
+a {
+	color:#8a8a8a;
+	text-decoration:underline;
+}
+a:hover {text-decoration:none;}
+input,
+textarea,
+select {
+	font:100% sans-serif;
+	vertical-align:middle;
+	color:#8a8a8a;
+}
+form,fieldset{
+	margin:0;
+	padding:0;
+	border:none;
+}
+#wrapper {
+	position:relative;
+	min-height:100%;
+	overflow:hidden;
+}
+#content {
+	float:right;
+	
+}
+#contents {
+margin-top: 10px;
+overflow-y: auto;
+overflow-x: hidden;
+position: absolute;
+right: 164px;
+left: 0;
+bottom: 0;
+top: 81px;
+}
+[dir=ltr] #contents {
+left: 164px;
+right: 0;
+}
+#ty {
+    color: #000000;
+    font-size: 13px;
+    -webkit-user-select: text;
+    cursor:text;
+}
+.c1 {
+	
+	position: absolute; 
+	width:100%;
+	bottom: 0;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+#sidebar {
+    float: left;
+    padding: 18px 1px 0;
+    width: 150px;
+    background: url("../images/bg-wrapper.png") repeat-y scroll left center transparent;
+        min-height: 522px;
+position: absolute;
+bottom: 0;
+top: 0;
+}
+#solgan {
+    float: left;
+    margin-left: -15px;
+    padding-right: 10px;
+    position: relative;
+}
+[dir=rtl] #solgan {
+	float: right;
+	margin-left:10px;
+
+/*Rectangular buttons on each tab eg. Install Updates*/
+	
+}.launcher {
+    border-color: transparent;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 340px;
+    padding-top: 5px;
+    margin: 3px;
+    position: relative;
+    cursor:pointer;
+
+    -webkit-transition: all .25s ease-in-out;
+}
+
+.launcher:hover {
+
+    border-color: rgba(23, 51, 78, 0.15) rgba(23, 51, 78, 0.17) rgba(23, 51, 78, 0.2);
+    background-color: rgba(3, 14, 27, 0.03);
+}
+.launcher:active {
+   background-image: linear-gradient(rgba(3, 14, 27, 0.02), rgba(3, 14, 27, 0.05));
+    border-color: rgba(23, 51, 78, 0.2) rgba(23, 51, 78, 0.23) rgba(23, 51, 78, 0.25);
+    -webkit-box-shadow: 0 1px 1px rgba(3, 14, 27, 0.05) inset, 0 0 1px rgba(3, 14, 27, 0.1) inset;
+    -webkit-transition-duration: 0;
+}
+.launcher h3 {
+    float: left;
+  top: -1px;
+	position: absolute;
+    color: #000000;
+    display: inline-block;
+    padding-right: 7px;
+}
+.launcher span {
+    margin-right: 7px;
+    margin-top: 24px;
+    position: absolute;
+}
+
+/*Rectangular buttons - icons on each tab*/
+
+.launcher img {
+	opacity: 1;
+	height: 38px;
+	width: 38px;
+	float: right;
+}
+[dir=ltr] .launcher img { float: left; }
+.launcher:hover img {
+	opacity: 0.8;
+}
+#sidebar .shadow {
+	background:url(../images/bg-shadow.png) no-repeat;
+	width:5px;
+	height:9999px;
+	overflow:hidden;
+	text-indent:-9999px;
+	position:absolute;
+	left:72px;
+	top:0;
+}
+
+.tabs .text-section {
+	border-bottom: 1px solid #E0E0E0;
+   background-color: rgba(0, 0, 0, 0.03);
+	padding:19px 0 8px 36px;
+	color: rgb(82, 92, 102);
+margin-left: 153px;
+}
+[dir=rtl] .tabs .text-section{
+	margin-right: 153px;
+margin-left: auto;
+	}
+.tabs .text-section .help {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	border: solid 1px #999;
+	border-radius: 10px;
+	vertical-align: top;
+	padding: 1px;
+	padding-left: 2px;
+	height: 32px;
+	background-color: #FFF;
+	-webkit-box-shadow: #666 0px 1px 3px;
+	opacity: 0.4;
+	cursor: pointer;
+	-webkit-transition: all .50s ease-in-out;
+}
+[dir=rtl] .text-section .help {
+	left: 5px;
+	right: auto;
+}
+.tabs .text-section .help:hover {
+	opacity: 1;
+}
+.tabs h1 {
+	font-size:16px;
+	line-height:20px;
+	margin:0 0 8px;
+	color:#2b333b;
+}
+.tabs p {margin:0 0 10px;}
+.logo {
+	background:url(../images/lite_logo.png) no-repeat ;
+	width:114px;
+	height:80px;
+	display:block;
+	margin:0 auto 10px;
+	position:relative;
+	left:1px;
+
+}
+.logo a {
+	display:block;
+	height:100%;
+}
+
+/*Buttons - left hand side tabs, System Information, Software etc*/
+
+.buttons {
+	list-style:none;
+	margin:0;
+	padding:0;
+	position:relative;
+	z-index:2;
+	font:bold 11px/13px Ubuntu, sans-serif;
+
+}
+.buttons li {
+	vertical-align:top;
+	margin:0 0 1px;
+	position:relative;
+}
+.buttons a {
+	vertical-align:top;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#565656), color-stop(100%,#464646));
+	width:150px;
+	height:40px;
+	display:block;
+	overflow:hidden;
+	cursor:pointer;
+	outline: none;
+}
+
+.buttons a:hover { 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#67abd6), color-stop(100%,#4a7fc2)); }
+.buttons li.active a {
+	background:url(../images/button-active.png) no-repeat -113px -2px;
+	margin:0 -21px 0 0;
+	padding:0 21px 0 0;
+	outline: none;
+}
+[dir=rtl] .buttons li.active a {
+	background: url(../images/button-active_right.png) no-repeat -63px -2px;
+	margin: 0 0px 0 -21px;
+	padding:0 0 0 21px;
+	}
+.buttons li.active a em {top:40px;}
+.buttons a span {
+    background: url("../images/icons-mono.png") no-repeat;
+    color: #FFFFFF;
+    display: inline-block;
+    height: 20px;
+    margin: 11px 5px 0;
+    overflow: hidden;
+    text-indent: 22px;
+    width: 150px;
+}
+.buttons em {
+	position:absolute;
+	right:0;
+	top:0;
+	background:url(../images/bg-shadow.png) repeat-y;
+	width:4px;
+	height:100%;
+	overflow:hidden;
+	text-indent: 20px;
+	
+}
+[dir=rtl] .buttons em {
+	-webkit-transform: scalex(-1);
+	right: 146px;
+}
+[dir=ltr] .buttons span {background-position-x:0px; }
+[dir=ltr] .buttons .active span {background-position-x:2px; }
+
+[dir=rtl] .buttons span {background-position-x:130px; }
+[dir=rtl] .buttons .active span {background-position-x:132px; }
+
+.buttons .ico1 span {background-position-y: 0;}
+.buttons .active .ico1 span {background-position-y: -25px;}
+.buttons .ico2 span {background-position-y: -47px;}
+.buttons .active .ico2 span {background-position-y: -73px;}
+.buttons .ico3 span {background-position-y: -97px;}
+.buttons .active .ico3 span {background-position-y: -126px;}
+.buttons .ico4 span {background-position-y: -153px;}
+.buttons .active .ico4 span {background-position-y: -178px;}
+.buttons .ico5 span {background-position-y: -206px;}
+.buttons .active .ico5 span {background-position-y:-232px;}
+.buttons .ico6 span {background-position-y: -262px;}
+
+#box {
+	background-color:#f7f7f7;  
+	-webkit-box-shadow: rgba(0, 0, 0, 0.2) -1px 1px 4px;
+	border-radius: 5px;
+	margin-right: 20px;
+	margin-bottom: 10px;
+
+}
+[dir=rtl] #box {
+	margin-right: 0px;
+	margin-left: 20px;
+	}
+#box_title {
+	color: #4a4a4a;
+	font-size: 14px;
+	border-bottom: 1px solid #ccc;
+	line-height: 22px;
+	background-color:#dad7d3;
+	padding-left: 6px;
+       -webkit-border-top-left-radius: 5px;
+       -webkit-border-top-right-radius: 5px;
+}
+[dir=rtl] #box_title {
+	padding-left: 0px;
+	padding-right: 6px;
+}
+#box_content {
+	
+	padding: 6px;
+}
+
+.tooltip
+{
+  position: relative;
+  display: inline-block;
+  outline: none;
+}
+
+.tooltip span
+{
+  visibility: hidden;
+  position: absolute; 
+  bottom: 40px;
+  left: 100px;
+  z-index: 999;
+  width: 100px;
+  margin-left: -127px;
+  margin-top: -30px;
+  padding: 5px;
+  border: 2px solid #FFF;
+  opacity: .8;
+  background-color: #494949;
+  color: #FFF;                        
+  border-radius: 3px;  
+
+}
+
+.tooltip:hover span
+{
+  visibility: visible;
+}
+
+/*System Information tab, bottom web link icons*/
+
+.link {
+	padding: 10px; /*space between icons*/
+	width: 48px; 
+	display: inline-block; 
+	cursor : pointer;
+	}
+.link img {
+	  padding-bottom: 2px;
+}
+.link p {
+	text-align:center;
+}
+.input-box {
+	 background: none repeat scroll 0 0 padding-box rgba(255, 255, 255, 0.898);
+	 border-radius: 0 2.5px 2.5px 0;
+	 -webkit-box-shadow: 0 1px 0 rgba(8, 22, 37, 0.02) inset, 0 0 2px rgba(8, 22, 37, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.2);
+	 border-color: rgba(23, 51, 78, 0.15) rgba(23, 51, 78, 0.17) rgba(23, 51, 78, 0.2);
+	 border-style: solid;
+    border-width: 1px;
+	 outline: none;
+	 padding: 3px 8px;
+}
+.input-submit {
+	margin-left: -6px;
+}
+.export_details {
+	position: absolute;
+
+left: 20px;
+bottom: 20px;
+  background: #4cb1ff;
+  
+  color: #fff;
+  box-shadow: 0 1px 0 hsla(0,0%,100%,.2) inset,
+              0 0 0 1px hsla(0,0%,100%,.1) inset,
+              0 1px 0 hsla(210,54%,20%,.03);
+border: 1px solid;
+ border-color: hsla(210,54%,20%,.15) hsla(210,54%,20%,.17) hsla(210,54%,20%,.2);
+   border-radius: 2.5px;
+  cursor: pointer;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+padding: 5px;
+padding-right: 25px;
+}
+[dir=ltr] .export_details {
+	left: auto;
+	right: 20px;
+	padding-right: 5px;
+	padding-left: 25px;
+}
+.export_details span {
+background: url("../images/icons-mono.png");
+background-position: 0px -315px;
+display: block;
+height: 24px;
+width: 24px;
+float: right;
+margin-right: -24px;
+margin-bottom: -5px;
+margin-top: -3px;
+}
+[dir=ltr] .export_details span {
+	float: left;
+	margin-right: 0px;
+	margin-left: -24px;
+}
+.export_details:active {
+	color: #eee;
+	background: rgb(130, 195, 245);
+	}

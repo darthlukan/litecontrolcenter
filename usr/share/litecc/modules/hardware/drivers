@@ -1,0 +1,5 @@
+[module]
+name = Install Drivers
+ico = drivers.png
+desc = Install hardware drivers
+command = gksudo /usr/bin/software-properties-gtk --open-tab=4

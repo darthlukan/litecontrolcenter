@@ -1,0 +1,5 @@
+[module]
+name = Screensaver
+ico = screensaver.png
+desc = Configure screensaver settings
+command = xscreensaver-demo

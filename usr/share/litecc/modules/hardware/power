@@ -1,0 +1,5 @@
+[module]
+name = Power Management
+ico = power.png
+desc = Configure your power settings
+command = xfce4-power-manager-settings

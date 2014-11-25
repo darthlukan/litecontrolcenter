@@ -1,0 +1,5 @@
+[module]
+name = Mouse and Touchpad
+ico = mousetouchpad.png
+desc = Configure mouse and touchpad behavior
+command = xfce4-mouse-settings

@@ -1,0 +1,5 @@
+[module]
+name = Partition Drives
+ico = partition.png
+desc = Partition hard drive space
+command = gparted-pkexec

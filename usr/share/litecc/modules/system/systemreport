@@ -1,0 +1,5 @@
+[module]
+name = Create System Report
+ico = sys_info.png
+desc = Creates a detailed report of your computer
+command = lxterminal -e /usr/share/litecc/scripts/info

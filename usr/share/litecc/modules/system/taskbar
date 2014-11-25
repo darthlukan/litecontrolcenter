@@ -1,0 +1,5 @@
+[module]
+name = Taskbar Settings
+ico = taskbar.png
+desc = Configure the panel/taskbar appearance
+command = xfce4-panel -p

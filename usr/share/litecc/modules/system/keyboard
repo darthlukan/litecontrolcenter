@@ -1,0 +1,5 @@
+[module]
+name = Keyboard Settings
+ico = keyboard.png
+desc = Edit keyboard settings and shortcuts
+command = xfce4-keyboard-settings

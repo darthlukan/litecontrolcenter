@@ -1,0 +1,5 @@
+[module]
+name = Add Home Icon
+ico = gdebi.png
+desc = Add Home icon to the Desktop
+command = leafpad

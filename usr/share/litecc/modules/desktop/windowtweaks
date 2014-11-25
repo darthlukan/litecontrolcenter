@@ -1,0 +1,5 @@
+[module]
+name = Window Manager Tweaks
+ico = windowtweaks.png
+desc = Fine tune window behaviour and effects
+command = xfwm4-tweaks-settings

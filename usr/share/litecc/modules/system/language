@@ -1,0 +1,5 @@
+[module]
+name = Language Support
+ico = language.png
+desc = Configure language support
+command = /usr/bin/gnome-language-selector
