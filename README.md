@@ -1,7 +1,7 @@
 litecontrolcenter
 =================
 
-Authors - Jerry Bezencon, Brian Tomlinson
+Authors - Jerry Bezencon, Brian Tomlinson, John Jenkins
 
 An all-in-one control application for Linux Lite.
 
