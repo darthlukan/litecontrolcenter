@@ -49,8 +49,7 @@ def functions(view, frame, req, data=None):
     print(uri)
     if lllink == "file":
         return False
-
-    if lllink == "about":
+    elif lllink == "about":
         '''about dialog, need to add LDC members whom helped'''
         about = gtk.AboutDialog()
         about.set_program_name("Linux Lite Control Center")
@@ -82,11 +81,9 @@ MA 02110-1301, USA. ''')
         about.set_logo(gtk.render_icon_pixbuf("/usr/share/litecc/litecc.png"))
         about.run()
         about.destroy()
-
-    if lllink == "admin":
+    elif lllink == "admin":
         execute(path)
-
-    if lllink == "exportdetails":
+    elif lllink == "exportdetails":
         dialog = gtk.FileChooserDialog("Select folder to export details to.", None,
                                        gtk.FILE_CHOOSER_ACTION_SAVE,
                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_SAVE, gtk.RESPONSE_OK))
@@ -96,38 +93,23 @@ MA 02110-1301, USA. ''')
         if response == gtk.RESPONSE_OK:
             export_details(dialog.get_filename())
         dialog.destroy()
-
     # uses executep to pipe process fork
-    if lllink == "script":
+    elif lllink == "script":
         execute("/usr/share/litecc/scripts/" + path)
-
-
     # need to fix urls
-    if lllink == "help":
+    elif lllink == "help":
         execute("exo-open file:///usr/share/doc/litemanual/index.html")
-
-
-    if lllink == "forum":
+    elif lllink == "forum":
         execute("exo-open http://www.linuxliteos.com/forums/")
-
-
-    if lllink == "website":
+    elif lllink == "website":
         execute("exo-open http://www.linuxliteos.com/")
-
-
-    if lllink == "facebook":
+    elif lllink == "facebook":
         execute("exo-open https://www.facebook.com/pages/Linuxlite/572323192787066")
-
-
-    if lllink == "twitter":
+    elif lllink == "twitter":
         execute("exo-open http://www.twitter.com/linuxlite/")
-
-
-    if lllink == "google":
+    elif lllink == "google":
         execute("exo-open https://plus.google.com/+linuxliteos/")
-
-
-    if lllink == "linkedin":
+    elif lllink == "linkedin":
         execute("exo-open http://www.linkedin.com/in/jerrybezencon")
 
     return True
