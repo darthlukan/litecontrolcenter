@@ -152,7 +152,7 @@ def get_info(info):
 
 
 def export_details(file):
-    x = open("%s/details.txt" % file, "w")
+    x = open("{0}/details.txt".format(file), "w")
     x.write('''
 Operating System: {0}
 Kernel: {1}
@@ -277,7 +277,8 @@ def frontend_fill():
         page = page.replace(key, value)
 
     for i in ['os', 'arc', 'processor', 'mem', 'gfx', 'audio', 'kernel', 'host', 'netstatus', 'netip']:
-        page = page.replace("{{0}}".format(i), get_info(i))
+        # TODO: Can't use str.format here, breaks other substitutions
+        page = page.replace("{%s}" % i, get_info(i))
 
     sections = ['software', 'system', 'desktop', 'hardware', 'networking']
     sections.sort()
