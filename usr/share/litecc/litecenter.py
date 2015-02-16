@@ -120,28 +120,28 @@ def get_info(info):
     try:
         if info == "os":
             return open('/etc/llver', 'r').read().split('\\n')[0]
-        elif info == "arc":
+        if info == "arc":
             return os.uname()[4]
-        elif info == "host":
+        if info == "host":
             return os.uname()[1]
-        elif info == "kernel":
+        if info == "kernel":
             return "{0} {1}".format(os.uname()[0], os.uname()[2])
-        elif info == "processor":
+        if info == "processor":
             return execute("cat /proc/cpuinfo | grep 'model name'").split(':')[1]
-        elif info == "mem":
+        if info == "mem":
             mem = execute("free -m|awk '/^Mem:/{print $2}'")
             if float(mem) > 1024:
                 return str(round(float(mem) / 1024)) + " GB"
             else:
                 return "{0} MB".format(mem)
-        elif info == "gfx":
+        if info == "gfx":
             return execute("lspci | grep VGA").split('controller:')[1].split('(rev')[0].split(',')[0]
-        elif info == "audio":
+        if info == "audio":
             return execute("lspci | grep Audio").split('device:')[1].split('(rev')[0].split(',')[0]
-        elif info == "netstatus":
+        if info == "netstatus":
             return execute(
                 "ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null && echo Active || echo Not connected to any known network")
-        elif info == "netip":
+        if info == "netip":
             ip = execute("hostname -i").split()
             if len(ip) > 1:
                 ip = ip[0]
