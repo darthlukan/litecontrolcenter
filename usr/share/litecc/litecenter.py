@@ -282,7 +282,8 @@ def frontend_fill():
     sections = ['software', 'system', 'desktop', 'hardware', 'networking']
     sections.sort()
     for i in sections:
-        page = page.replace("{{0}_list}".format(i), get_modules(i))
+        # TODO: Can't use str.format here, breaks other substitutions
+        page = page.replace("{%s_list}" % i, get_modules(i))
     filee.close()
     return page
 
