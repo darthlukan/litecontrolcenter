@@ -217,6 +217,7 @@ def get_modules(section):
 def frontend_fill():
     """build all html junk"""
 
+    # TODO: This is fine as a band-aid, but will not scale
     strings_to_replace = {
         "{DIR_dir}": "ltr",
         "{string_1}": "System Information",
