@@ -5,8 +5,7 @@ import subprocess
 from configparser import ConfigParser
 
 from gi.repository import Gtk as gtk
-
-import webkit  # ImportError
+from gi.repository import WebKit as webkit
 
 from locale import getdefaultlocale
 
@@ -82,11 +81,9 @@ MA 02110-1301, USA. ''')
         about.set_logo(gtk.render_icon_pixbuf("/usr/share/litecc/litecc.png"))
         about.run()
         about.destroy()
-        return True
 
     if lllink == "admin":
         execute(path)
-        return True
 
     if lllink == "exportdetails":
         dialog = gtk.FileChooserDialog("Select folder to export details to.", None,
@@ -98,40 +95,41 @@ MA 02110-1301, USA. ''')
         if response == gtk.RESPONSE_OK:
             export_details(dialog.get_filename())
         dialog.destroy()
-        return True
+
     # uses executep to pipe process fork
     if lllink == "script":
         execute("/usr/share/litecc/scripts/" + path)
-        return True
+
 
     # need to fix urls
     if lllink == "help":
         execute("exo-open file:///usr/share/doc/litemanual/index.html")
-        return True
+
 
     if lllink == "forum":
         execute("exo-open http://www.linuxliteos.com/forums/")
-        return True
+
 
     if lllink == "website":
         execute("exo-open http://www.linuxliteos.com/")
-        return True
+
 
     if lllink == "facebook":
         execute("exo-open https://www.facebook.com/pages/Linuxlite/572323192787066")
-        return True
+
 
     if lllink == "twitter":
         execute("exo-open http://www.twitter.com/linuxlite/")
-        return True
+
 
     if lllink == "google":
         execute("exo-open https://plus.google.com/+linuxliteos/")
-        return True
+
 
     if lllink == "linkedin":
         execute("exo-open http://www.linkedin.com/in/jerrybezencon")
-        return True
+
+    return True
 
 
 def get_info(info):
@@ -161,7 +159,7 @@ def get_info(info):
             return execute(
                 "ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null && echo Active || echo Not connected to any known network")
         if info == "netip":
-            return execute("hostname -I")
+            return execute("hostname -i")
     except:
         return " "
 
@@ -192,7 +190,7 @@ def get_modules(section):
         mod_dir = os.listdir("/usr/share/litecc/modules/%s/" % section)
         mod_dir.sort()
     except Exception as details:
-        os.system("zenity --error --text 'Error : {0}' --title 'Module Loading Error'".format(details.message))
+        os.system("zenity --error --text 'Error : {0}' --title 'Module Loading Error'".format(details))
         return exit()
 
     if isinstance(mod_dir, list) and len(mod_dir) < 1:
@@ -333,5 +331,5 @@ if __name__ == '__main__':
     try:
         main()
     except (Exception, AttributeError, FileNotFoundError) as e:
-        print("Exiting due to error: {0}".format(e.message))
+        print("Exiting due to error: {0}".format(e))
         sys.exit(1)
