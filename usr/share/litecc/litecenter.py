@@ -217,65 +217,8 @@ def get_modules(section):
 def frontend_fill():
     """build all html junk"""
 
-    # TODO: This is fine as a band-aid, but will not scale
-    strings_to_replace = {
-        "{DIR_dir}": "ltr",
-        "{string_1}": "System Information",
-        "{string_2}": "A brief overview of your system",
-        "{string_3}": "Computer",
-        "{string_4}": "Operating System: ",
-        "{string_5}": "Processor: ",
-        "{string_6}": "Architecture: ",
-        "{string_7}": "Installed Memory: ",
-        "{string_8}": "Devices",
-        "{string_9}": "Graphics Card: ",
-        "{string_10}": "Sound Card: ",
-        "{string_11}": "Ethernet: ",
-        "{string_12}": "Misc",
-        "{string_13}": "Hostname: ",
-        "{string_14}": "Kernel: ",
-        "{string_15}": "UNUSED",
-        "{string_16}": "Software",
-        "{string_17}": "Installing and maintaining software on your system",
-        "{string_18}": "Desktop",
-        "{string_19}": "Manage your desktop environment",
-        "{string_20}": "System",
-        "{string_21}": "Configure and customize your computer",
-        "{string_22}": "Hardware",
-        "{string_23}": "Hardware management and configuration for your computer",
-        "{string_24}": "Network",
-        "{string_25}": "Manage and configure your home network and connections",
-        "{string_26}": "Forum",
-        "{string_27}": "Help",
-        "{string_28}": "Install Popular Software",
-        "{string_29}": "Guide",
-        "{string_30}": "Status: ",
-        "{string_31}": "Local IP Address: ",
-        "{string_32}": "Internet",
-        "{string_33}": "TIP: ",
-        "{string_34}": "UNUSED",
-        "{string_35}": "Install Desktop Extras",
-        "{string_36}": "Here you can install Desktop addons, select one to install",
-        "{string_37}": "Export system details",
-        "{string_38}": "UNUSED",
-        "{string_39}": "UNUSED",
-        "{string_40}": "save packages",
-        "{string_41}": "Hardware drivers and players",
-        "{string_42}": "Manage Hardware on your system",
-        "{string_43}": "Nvidia graphics card driver",
-        "{string_44}": "Bluetooth driver",
-        "{string_45}": "Camera driver",
-        "{string_46}": "Scanner driver",
-        "{string_47}": "Website",
-        "{string_48}": "LinkedIn",
-        "{string_49}": "Facebook",
-        "{string_50}": "Twitter",
-        "{string_51}": "Google+"
-    }
-    filee = open(app_dir + '/frontend/default.html', 'r')
+    filee = open("{0}/frontend/default.html".format(app_dir), "r")
     page = filee.read()
-    for key, value in strings_to_replace.items():
-        page = page.replace(key, value)
 
     for i in ['os', 'arc', 'processor', 'mem', 'gfx', 'audio', 'kernel', 'host', 'netstatus', 'netip']:
         # TODO: Can't use str.format here, breaks other substitutions
