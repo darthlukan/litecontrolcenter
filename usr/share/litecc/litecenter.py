@@ -5,6 +5,7 @@ import subprocess
 from configparser import ConfigParser
 
 from gi.repository import Gtk as gtk
+from gi.repository.GdkPixbuf import Pixbuf
 from gi.repository import WebKit as webkit
 
 from locale import getdefaultlocale
@@ -137,30 +138,34 @@ def get_info(info):
     try:
         if info == "os":
             return open('/etc/llver', 'r').read().split('\\n')[0]
-        if info == "arc":
+        elif info == "arc":
             return os.uname()[4]
-        if info == "host":
+        elif info == "host":
             return os.uname()[1]
-        if info == "kernel":
+        elif info == "kernel":
             return os.uname()[0] + ' ' + os.uname()[2]
-        if info == "processor":
+        elif info == "processor":
             return execute("cat /proc/cpuinfo | grep 'model name'").split(':')[1]
-        if info == "mem":
+        elif info == "mem":
             mem = execute("free -m|awk '/^Mem:/{print $2}'")
             if float(mem) > 1024:
                 return str(round(float(mem) / 1024)) + " GB"
             else:
-                return mem + " MB"
-        if info == "gfx":
-            return execute("lspci |grep VGA").split('controller:')[1].split('(rev')[0].split(',')[0]
-        if info == "audio":
-            return execute("lspci |grep Audio").split('device:')[1].split('(rev')[0].split(',')[0]
-        if info == "netstatus":
+                return "{0} MB".format(mem)
+        elif info == "gfx":
+            return execute("lspci | grep VGA").split('controller:')[1].split('(rev')[0].split(',')[0]
+        elif info == "audio":
+            return execute("lspci | grep Audio").split('device:')[1].split('(rev')[0].split(',')[0]
+        elif info == "netstatus":
             return execute(
                 "ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null && echo Active || echo Not connected to any known network")
-        if info == "netip":
-            return execute("hostname -i")
-    except:
+        elif info == "netip":
+            ip = execute("hostname -i").split()
+            if len(ip) > 1:
+                ip = ip[0]
+            return ip
+    except (OSError, TypeError, Exception) as e:
+        print(e)
         return " "
 
 
@@ -230,63 +235,66 @@ def get_modules(section):
 
 
 def frontend_fill():
-    '''build all html junk'''
+    """build all html junk"""
 
+    strings_to_replace = {
+        "{DIR_dir}": "ltr",
+        "{string_1}": "System Information",
+        "{string_2}": "A brief overview of your system",
+        "{string_3}": "Computer",
+        "{string_4}": "Operating System: ",
+        "{string_5}": "Processor: ",
+        "{string_6}": "Architecture: ",
+        "{string_7}": "Installed Memory: ",
+        "{string_8}": "Devices",
+        "{string_9}": "Graphics Card: ",
+        "{string_10}": "Sound Card: ",
+        "{string_11}": "Ethernet: ",
+        "{string_12}": "Misc",
+        "{string_13}": "Hostname: ",
+        "{string_14}": "Kernel: ",
+        "{string_15}": "UNUSED",
+        "{string_16}": "Software",
+        "{string_17}": "Installing and maintaining software on your system",
+        "{string_18}": "Desktop",
+        "{string_19}": "Manage your desktop environment",
+        "{string_20}": "System",
+        "{string_21}": "Configure and customize your computer",
+        "{string_22}": "Hardware",
+        "{string_23}": "Hardware management and configuration for your computer",
+        "{string_24}": "Network",
+        "{string_25}": "Manage and configure your home network and connections",
+        "{string_26}": "Forum",
+        "{string_27}": "Help",
+        "{string_28}": "Install Popular Software",
+        "{string_29}": "Guide",
+        "{string_30}": "Status: ",
+        "{string_31}": "Local IP Address: ",
+        "{string_32}": "Internet",
+        "{string_33}": "TIP: ",
+        "{string_34}": "UNUSED",
+        "{string_35}": "Install Desktop Extras",
+        "{string_36}": "Here you can install Desktop addons, select one to install",
+        "{string_37}": "Export system details",
+        "{string_38}": "UNUSED",
+        "{string_39}": "UNUSED",
+        "{string_40}": "save packages",
+        "{string_41}": "Hardware drivers and players",
+        "{string_42}": "Manage Hardware on your system",
+        "{string_43}": "Nvidia graphics card driver",
+        "{string_44}": "Bluetooth driver",
+        "{string_45}": "Camera driver",
+        "{string_46}": "Scanner driver",
+        "{string_47}": "Website",
+        "{string_48}": "LinkedIn",
+        "{string_49}": "Facebook",
+        "{string_50}": "Twitter",
+        "{string_51}": "Google+"
+    }
     filee = open(app_dir + '/frontend/default.html', 'r')
     page = filee.read()
-    page = page.replace("{DIR_dir}", "ltr")
-
-    page = page.replace("{string_1}", "System Information")
-    page = page.replace("{string_2}", "A brief overview of your system")
-    page = page.replace("{string_3}", "Computer")
-    page = page.replace("{string_4}", "Operating System: ")
-    page = page.replace("{string_5}", "Processor: ")
-    page = page.replace("{string_6}", "Architecture: ")
-    page = page.replace("{string_7}", "Installed Memory: ")
-    page = page.replace("{string_8}", "Devices")
-    page = page.replace("{string_9}", "Graphics Card: ")
-    page = page.replace("{string_10}", "Sound Card: ")
-    page = page.replace("{string_11}", "Ethernet: ")
-    page = page.replace("{string_12}", "Misc")
-    page = page.replace("{string_13}", "Hostname: ")
-    page = page.replace("{string_14}", "Kernel: ")
-    page = page.replace("{string_15}", "UNUSED")
-    page = page.replace("{string_16}", "Software")
-    page = page.replace("{string_17}", "Installing and maintaining software on your system")
-    page = page.replace("{string_18}", "Desktop")
-    page = page.replace("{string_19}", "Manage your desktop environment")
-    page = page.replace("{string_20}", "System")
-    page = page.replace("{string_21}", "Configure and customize your computer")
-    page = page.replace("{string_22}", "Hardware")
-    page = page.replace("{string_23}", "Hardware management and configuration for your computer")
-    page = page.replace("{string_24}", "Network")
-    page = page.replace("{string_25}", "Manage and configure your home network and connections")
-    page = page.replace("{string_26}", "Forum")
-    page = page.replace("{string_27}", "Help")
-    page = page.replace("{string_28}", "Install Popular Software")
-    page = page.replace("{string_29}", "Guide")
-    page = page.replace("{string_30}", "Status: ")
-    page = page.replace("{string_31}", "Local IP Address: ")
-    page = page.replace("{string_32}", "Internet")
-    page = page.replace("{string_33}", "TIP: ")
-    page = page.replace("{string_34}", "UNUSED")
-    page = page.replace("{string_35}", "Install Desktop Extras")
-    page = page.replace("{string_36}", "Here you can install Desktop addons, select one to install")
-    page = page.replace("{string_37}", "Export system details")
-    page = page.replace("{string_38}", "UNUSED")
-    page = page.replace("{string_39}", "UNUSED")
-    page = page.replace("{string_40}", "save packages")
-    page = page.replace("{string_41}", "Hardware drivers and players")
-    page = page.replace("{string_42}", "Manage Hardware on your system")
-    page = page.replace("{string_43}", "Nvidia graphics card driver")
-    page = page.replace("{string_44}", "Bluetooth driver")
-    page = page.replace("{string_45}", "Camera driver")
-    page = page.replace("{string_46}", "Scanner driver")
-    page = page.replace("{string_47}", "Website")
-    page = page.replace("{string_48}", "LinkedIn")
-    page = page.replace("{string_49}", "Facebook")
-    page = page.replace("{string_50}", "Twitter")
-    page = page.replace("{string_51}", "Google+")
+    for key, value in strings_to_replace.items():
+        page = page.replace(key, value)
 
     for i in ['os', 'arc', 'processor', 'mem', 'gfx', 'audio', 'kernel', 'host', 'netstatus', 'netip']:
         page = page.replace("{%s}" % i, get_info(i))
@@ -308,7 +316,7 @@ def main():
     window = gtk.Window()
     window.connect('destroy', gtk.main_quit)
     window.set_title("Linux Lite Control Center")
-    window.set_icon(gtk.render_icon_pixbuf("/usr/share/litecc/litecc.png"))
+    window.set_icon(Pixbuf.new_from_file("/usr/share/litecc/litecc.png"))
     window.set_size_request(870, 570)
     # Valtam do we need to resize window?
     window.set_resizable(False)
